@@ -1,0 +1,28 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fonte
+spec:
+  selector:
+    matchLabels:
+      app: fonte
+  template:
+    metadata:
+      labels:
+        app: fonte
+    spec:
+#      priorityClassName: high-priority
+
+      hostNetwork: true
+      dnsPolicy: ClusterFirst               
+      containers:        
+        - image: aldemirn/fonte
+          name: fonte
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"

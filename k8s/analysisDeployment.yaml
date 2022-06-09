@@ -1,0 +1,28 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: analysis
+spec:
+  selector:
+    matchLabels:
+      app: analysis
+  template:
+    metadata:
+      labels:
+        app: analysis
+    spec:
+#      priorityClassName: high-priority
+
+      hostNetwork: true
+      dnsPolicy: ClusterFirst               
+      containers:        
+        - image: aldemirn/analysis
+          name: analysis
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
